@@ -1,16 +1,6 @@
 import wikiquote
 import random
-import cmudict
-import string
-
-d = cmudict.dict()
-
-
-def nsyl(word):
-    return [len(list(y for y in x if y[-1].isdigit())) for x in d[word.lower()]]
-
-
-exclude = set(string.punctuation)
+import syllables
 
 
 def find_quotes():
@@ -19,36 +9,29 @@ def find_quotes():
     while i < 3:
         quote_index = wikiquote.random_titles()
         quotes = wikiquote.quotes(random.choice(quote_index))
-        while quotes is 0:
+        while not quotes:
             quotes = wikiquote.quotes(random.choice(quote_index))
-        quote = quotes[0]
         syl = 0
-        if i is 0 or 2:
-            for word in quote.split():
-                word = ''.join(ch for ch in word if ch not in exclude)
-                word = word.replace(',', '')
-                num = nsyl(word)
-                if not nsyl(word):
-                    syl += 5
-                else:
-                    syl += num[0]
+        line = ""
+        for word in quotes[0].split():
+            if "." in word:
+                syl += syllables.estimate(word)
+                line += word
+                line += " "
+                break
+            syl += syllables.estimate(word)
+            line += word
+            line += " "
 
-            if syl is 5:
-                haiku.insert(quote)
-                ++i
-        else:
-            for word in quote.split():
-                word = ''.join(ch for ch in word if ch not in exclude)
-                word = word.replace(',', '')
-                num = nsyl(word)
-                if not nsyl(word):
-                    syl += 5
-                else:
-                    syl += num[0]
-            if syl is 7:
-                haiku.insert(quote)
-                ++i
-    print(haiku)
+        if syl is 5 and len(haiku) < 2:
+            haiku.insert(0, line)
+            i += 1
+        elif syl is 7:
+            haiku.insert(1, line)
+            i += 1
+
+    for line in haiku:
+        print(line)
 
 
 find_quotes()
