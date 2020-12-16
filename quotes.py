@@ -1,7 +1,12 @@
 import wikiquote
+import os.path
 import random
 import re
+import sched
+import time
 from wikiquote import DisambiguationPageException
+
+event_schedule = sched.scheduler(time.time, time.sleep)
 
 
 class EmptyException(Exception):
@@ -182,9 +187,13 @@ def find_quotes():
             third = line
             dict[third] = title
             i += 1
+    save_path = "C:/Users/natha/Documents/Personal Projects/quotes/Haikus"
+    file = os.path.join(save_path, dict[first]+".txt")
+    f = open(file, "w")
+    f.write('\n' + "Haiku:" + '\n' + first + '\n' + second + '\n' + third)
+    f.write('\n' + "Authors:" + '\n' + dict[first] + '\n' + dict[second] + '\n' + dict[third])
 
-    print('\n', "Haiku:", '\n', first, '\n', second, '\n', third)
-    print('\n', "Authors:", '\n', dict[first], '\n', dict[second], '\n', dict[third])
 
-
-find_quotes()
+while True:
+    find_quotes()
+    time.sleep(60)
