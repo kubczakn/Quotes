@@ -5,6 +5,10 @@ import re
 import sched
 import time
 from wikiquote import DisambiguationPageException
+from os import sys, path
+
+sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+
 
 event_schedule = sched.scheduler(time.time, time.sleep)
 
@@ -190,10 +194,9 @@ def find_quotes():
     save_path = "C:/Users/natha/Documents/Personal Projects/quotes/Haikus"
     file = os.path.join(save_path, dict[first]+".txt")
     f = open(file, "w")
-    f.write('\n' + "Haiku:" + '\n' + first + '\n' + second + '\n' + third)
+    f.write('\n' + "Haiku:" + '\n' + first + '\n' + second + '\n' + third + '\n')
     f.write('\n' + "Authors:" + '\n' + dict[first] + '\n' + dict[second] + '\n' + dict[third])
 
 
-while True:
-    find_quotes()
-    time.sleep(60)
+find_quotes()
+
