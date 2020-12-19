@@ -26,28 +26,33 @@ def create_table(conn, create_table_sql):
 
 def read_files(path):
     files = os.listdir(path)
+    texts = {}
     for filename in files:
         abs_path = path + '/' + filename
+        name = filename.replace('.txt', '')
         file = open(abs_path, 'r')
-        print(file.read())
+        texts[name] = file.read()
         file.close()
 
+    return texts
 
-def create_haiku(conn):
-    sql = "INSERT INTO HAIKU(name, authors, content) VALUES  (\"test\",\"test\",\"test\");"
+
+def create_haiku(conn, files):
     cur = conn.cursor()
-    cur.execute(sql)
-    conn.commit()
+    for filename in files:
+        cur.execute("INSERT INTO HAIKU VALUES (?, ?)", (filename, files[filename]))
+        conn.commit()
+
     cur.close()
 
 
 def main():
-    # database = r"C:/sqlite/db/haikuDB.db"
+    database = r"C:/sqlite/db/haikuDB.db"
     path = 'C:/Users/natha/Documents/Personal Projects/quotes/Haikus'
+
     # create database connection
-    # conn = sqlite3.connect(database)
-    read_files(path)
-    # create_haiku(conn)
+    conn = sqlite3.connect(database)
+    create_haiku(conn, read_files(path))
 
 
 main()
