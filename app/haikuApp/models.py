@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+
+# make models here
+
+class Haiku(models.Model):
+    name = models.CharField(max_length=50)
+    content = models.CharField(max_length=500)
