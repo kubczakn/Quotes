@@ -23,9 +23,9 @@ def search(name):
     except wikipedia.PageError:
         return 'Film'
 
-    if summary.find('film') != -1:
+    if summary.find('film') or summary.find('movie') != -1:
         return 'Film'
-    if summary.find('novel') != -1:
+    if summary.find('novel') or summary.find('book') != -1:
         return 'Book'
     else:
         return 'Person'
