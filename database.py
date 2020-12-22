@@ -1,7 +1,9 @@
 import os
 import sqlite3
+import classifier
 import wikipedia
 import random
+
 from sqlite3 import Error
 
 
@@ -13,22 +15,8 @@ class Haiku:
 
 
 # Search to determine Haiku type
-def search(name):
-    article = wikipedia.search(name)[0]
-
-    try:
-        summary = wikipedia.summary(article)
-    except wikipedia.DisambiguationError as e:
-        summary = wikipedia.summary(e.options[0])
-    except wikipedia.PageError:
-        return 'Film'
-
-    if summary.find('film') or summary.find('movie') != -1:
-        return 'Film'
-    if summary.find('novel') or summary.find('book') != -1:
-        return 'Book'
-    else:
-        return 'Person'
+def search(content, classif):
+    return
 
 
 def create_connection(db_file):
@@ -53,13 +41,19 @@ def create_table(conn, create_table_sql):
 
 
 def read_files(path):
+    # create classifier
+
     files = os.listdir(path)
     texts = {}
     for filename in files:
         abs_path = path + '/' + filename
         name = filename.replace('.txt', '')
         file = open(abs_path, 'r')
-        kind = search(name)
+        content = ''
+        for line in file.readlines()[2:4]:
+            content += line
+            content += ''
+        kind = search(content)
         texts[name] = Haiku(kind, file.read())
         file.close()
 
