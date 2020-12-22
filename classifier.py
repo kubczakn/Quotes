@@ -73,6 +73,3 @@ def get_result(result):
     res = 'Positive' if analysis_result[0] == '1' else 'Negative'
     return res
 
-
-training_data = get_training_data()
-print(get_result(analyse_text('I love this movie!', training_data)))

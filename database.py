@@ -15,8 +15,8 @@ class Haiku:
 
 
 # Search to determine Haiku type
-def search(content, classif):
-    return
+def search(content, data):
+    return classifier.get_result(classifier.analyse_text(content, data))
 
 
 def create_connection(db_file):
@@ -41,19 +41,21 @@ def create_table(conn, create_table_sql):
 
 
 def read_files(path):
-    # create classifier
 
     files = os.listdir(path)
     texts = {}
+    training_data = classifier.get_training_data()
     for filename in files:
         abs_path = path + '/' + filename
         name = filename.replace('.txt', '')
         file = open(abs_path, 'r')
         content = ''
-        for line in file.readlines()[2:4]:
+        for line in file.readlines()[2:5]:
             content += line
             content += ''
-        kind = search(content)
+        file.close()
+        file = open(abs_path, 'r')
+        kind = search(content, training_data)
         texts[name] = Haiku(kind, file.read())
         file.close()
 
