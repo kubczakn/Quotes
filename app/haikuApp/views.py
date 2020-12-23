@@ -16,4 +16,7 @@ def index(request):
 
 
 def result(request):
+    # Get random haiku from type selected
+    random_haiku = Haiku.objects.order_by('?')[0]
+
     return render(request, 'haikuApp/result.html')

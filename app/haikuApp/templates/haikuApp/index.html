@@ -19,7 +19,7 @@
                     {% endif %}
 
                     {% if choice_list %}
-                        <form>
+                        <form action={% url 'haikuApp:result' choice.choice_text %} method="post">
                             {% for choice in choice_list %}
                                 <input class="radio" type="radio" id={{ choice.id }} value={{ choice.choice_text }}>
                                 <label class="radio" for={{ choice.id }}>{{ choice.choice_text }}</label><br>

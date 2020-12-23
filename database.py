@@ -64,10 +64,11 @@ def read_files(path):
 
 def create_haiku(conn, files):
     cur = conn.cursor()
+    i = 1
     for filename in files:
-        cur.execute("INSERT INTO HAIKU VALUES (?, ?, ?)", (filename, files[filename].content, files[filename].kind))
+        cur.execute("INSERT INTO HAIKU VALUES (?, ?, ?, ?)", (i, filename, files[filename].content, files[filename].kind))
         conn.commit()
-
+        i += 1
     cur.close()
 
 

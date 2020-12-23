@@ -5,6 +5,16 @@
     <title>Results</title>
 </head>
 <body>
-    <h1>Results Page</h1>
+    <div>
+           <h1>Results Page</h1>
+        {% if haiku_list %}
+            {% for  in question_list %}
+                <p>{{ question.question_text}} </p>
+            {%  endfor %}
+        {% else %}
+            <p>No available haiku</p>
+        {% endif %}
+    </div>
+
 </body>
 </html>
