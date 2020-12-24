@@ -1,3 +1,4 @@
+from random import choice
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -26,8 +27,18 @@ def index(request):
 
 
 def positive(request):
-    return render(request, 'haikuApp/positive.html')
+    haiku_list = Haiku.objects.filter(type='Positive')
+    haiku = choice(haiku_list)
+    context = {
+        'haiku' : haiku
+    }
+    return render(request, 'haikuApp/positive.html', context)
 
 
 def negative(request):
-    return render(request, 'haikuApp/negative.html')
+    haiku_list = Haiku.objects.filter(type='Negative')
+    haiku = choice(haiku_list)
+    context = {
+        'haiku' : haiku
+    }
+    return render(request, 'haikuApp/negative.html', context)

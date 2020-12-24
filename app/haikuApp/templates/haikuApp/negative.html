@@ -9,7 +9,10 @@
 <body>
     <div class="container">
         <div class="child">
-              <h1>Haiku Generator</h1>
+            <h1>Haiku Generator</h1>
+            {% if haiku %}
+                <p>{{ haiku.content }}</p>
+            {% endif %}
         </div>
 
     </div>
