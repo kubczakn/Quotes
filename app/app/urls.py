@@ -18,7 +18,8 @@ from django.urls import path
 from haikuApp import views
 
 urlpatterns = [
-    path('haikuApp/result', views.result),
+    path('haikuApp/positive/', views.positive),
+    path('haikuApp/negative/', views.negative),
     path('haikuApp/', views.index),
     path('admin/', admin.site.urls),
 ]
