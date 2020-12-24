@@ -52,7 +52,7 @@ def read_files(path):
         content = ''
         for line in file.readlines()[2:5]:
             content += line
-            content += ''
+            content += '\n'
         file.close()
         file = open(abs_path, 'r')
         kind = search(content, training_data)
