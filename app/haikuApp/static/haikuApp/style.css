@@ -1,10 +1,27 @@
 .container {
     display: flex;
     justify-content: center;
+    padding-right: 450px;
+    padding-top: 140px;
 }
 
 p, pre {
-    font-size: large;
+    font-size: x-large;
+
+}
+
+h1, p, input, label, pre {
+    font-family: 'Marck Script', cursive;
+}
+
+body, html {
+    background-image: url("/static/img/background.jfif");
+
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
