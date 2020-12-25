@@ -3,9 +3,11 @@
     justify-content: center;
 }
 
-.p {
-    text-align: center;
+p, pre {
+    font-size: large;
 }
+
+
 
 
 
