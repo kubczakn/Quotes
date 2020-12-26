@@ -66,14 +66,14 @@ def create_haiku(conn, files):
     cur = conn.cursor()
     i = 1
     for filename in files:
-        cur.execute("INSERT INTO HAIKU VALUES (?, ?, ?, ?)", (i, filename, files[filename].content, files[filename].kind))
+        cur.execute("INSERT INTO haikuApp_haiku VALUES (?, ?, ?, ?)", (i, filename, files[filename].content, files[filename].kind))
         conn.commit()
         i += 1
     cur.close()
 
 
 def main():
-    database = r"C:/sqlite/db/haikuDB.db"
+    database = r"C:\Users\natha\Documents\Personal Projects\quotes\Quotes\app\db.sqlite3"
     path = 'C:/Users/natha/Documents/Personal Projects/quotes/Haikus'
 
     # create database connection
