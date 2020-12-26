@@ -64,6 +64,7 @@ def read_files(path):
 
 def create_haiku(conn, files):
     cur = conn.cursor()
+    cur.execute("DELETE FROM haikuApp_haiku")
     i = 1
     for filename in files:
         cur.execute("INSERT INTO haikuApp_haiku VALUES (?, ?, ?, ?)", (i, filename, files[filename].content, files[filename].kind))
