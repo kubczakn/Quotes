@@ -89,12 +89,10 @@ def create_haiku(conn, name, haiku):
 
 
 def main():
-    database = r"C:\Users\natha\Documents\Personal Projects\quotes\Quotes\app\db.sqlite3"
-    path = 'C:/Users/natha/Documents/Personal Projects/quotes/Haikus'
+    database = os.path.abspath("app/db.sqlite3")
 
     # create database connection
     conn = sqlite3.connect(database)
-    # create_haikus(conn, read_files(path))
     name, content = quotes.find_quotes()
     create_haiku(conn, name, content)
 
