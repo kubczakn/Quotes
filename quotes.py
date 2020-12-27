@@ -191,12 +191,15 @@ def find_quotes():
             third = line
             dict[third] = title
             i += 1
-    save_path = "C:/Users/natha/Documents/Personal Projects/quotes/Haikus"
-    file = os.path.join(save_path, dict[first]+".txt")
-    f = open(file, "w")
-    f.write('\n' + "Haiku:" + '\n' + first + '\n' + second + '\n' + third + '\n')
-    f.write('\n' + "Authors:" + '\n' + dict[first] + '\n' + dict[second] + '\n' + dict[third])
+    # save_path = "C:/Users/natha/Documents/Personal Projects/quotes/Haikus"
+    # file = os.path.join(save_path, dict[first]+".txt")
+    # f = open(file, "w")
+    # f.write('\n' + "Haiku:" + '\n' + first + '\n' + second + '\n' + third + '\n')
+    # f.write('\n' + "Authors:" + '\n' + dict[first] + '\n' + dict[second] + '\n' + dict[third])
+    content = '\n' + "Haiku:" + '\n' + first + '\n' + second + '\n' + third + '\n'
+    content += '\n' + "Haiku:" + '\n' + first + '\n' + second + '\n' + third + '\n'
+    return dict[first], content
 
 
-find_quotes()
+
 

@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import classifier
+import quotes
 import wikipedia
 import random
 
@@ -41,7 +42,6 @@ def create_table(conn, create_table_sql):
 
 
 def read_files(path):
-
     files = os.listdir(path)
     texts = {}
     training_data = classifier.get_training_data()
@@ -62,14 +62,31 @@ def read_files(path):
     return texts
 
 
-def create_haiku(conn, files):
+def create_haikus(conn, files):
     cur = conn.cursor()
     cur.execute("DELETE FROM haikuApp_haiku")
     i = 1
     for filename in files:
-        cur.execute("INSERT INTO haikuApp_haiku VALUES (?, ?, ?, ?)", (i, filename, files[filename].content, files[filename].kind))
+        cur.execute("INSERT INTO haikuApp_haiku VALUES (?, ?, ?, ?)",
+                    (i, filename, files[filename].content, files[filename].kind))
         conn.commit()
         i += 1
+    cur.close()
+
+
+def classify_haiku(haiku):
+    start = haiku.find("Haiku:") + len("Haiku:")
+    end = haiku.find("Authors:")
+    content = haiku[start:end]
+    training_data = classifier.get_training_data()
+    return search(content, training_data)
+
+
+def create_haiku(conn, name, haiku):
+    cur = conn.cursor()
+    cur.execute("INSERT INTO haikuApp_haiku VALUES (NULL,  ?, ?, ?)",
+                (name, haiku, classify_haiku(haiku)))
+    conn.commit()
     cur.close()
 
 
@@ -79,7 +96,9 @@ def main():
 
     # create database connection
     conn = sqlite3.connect(database)
-    create_haiku(conn, read_files(path))
+    # create_haikus(conn, read_files(path))
+    name, content = quotes.find_quotes()
+    create_haiku(conn, name, content)
 
 
 main()
