@@ -11,6 +11,11 @@ Create and activate virtual environment:
 $ python3 -m venv quotes-env
 $ source quotes-env/bin/activate
 ```
+Update pip and install wheel
+```bash
+(quotes-env)$ pip3 install --upgrade pip
+(quotes-env)$ pip3 install wheel
+```
 Install dependencies:
 ```bash
 (quotes-env)$ pip install -r requirements.txt
@@ -18,6 +23,7 @@ Install dependencies:
 # Usage
 Populate the Django database with a new haiku categorized by sentiment:
 ```bash
+$ cd scripts
 $ python database.py
 ```
 Run the Django application at http://127.0.0.1:8000/haikuApp/:
