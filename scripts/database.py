@@ -2,8 +2,6 @@ import os
 import sqlite3
 import classifier
 import quotes
-import wikipedia
-import random
 
 from sqlite3 import Error
 
