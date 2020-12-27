@@ -16,7 +16,7 @@ Install dependencies:
 (quotes-env)$ pip install -r requirements.txt
 ```
 # Usage
-Populate the Django database with a new Haiku categorized by sentiment:
+Populate the Django database with a new haiku categorized by sentiment:
 ```bash
 $ python database.py
 ```
