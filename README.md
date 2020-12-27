@@ -13,8 +13,8 @@ $ source quotes-env/bin/activate
 ```
 Update pip and install wheel
 ```bash
-pip3 install --upgrade pip
-pip3 install wheel
+(quotes-env)$ pip3 install --upgrade pip
+(quotes-env)$ pip3 install wheel
 ```
 Install dependencies:
 ```bash
