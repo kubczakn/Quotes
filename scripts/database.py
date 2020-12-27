@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import sqlite3
 import classifier
 import quotes
@@ -89,7 +90,7 @@ def create_haiku(conn, name, haiku):
 
 
 def main():
-    database = os.path.abspath("app/db.sqlite3")
+    database = Path(__file__).parent.parent / "app/db.sqlite3"
 
     # create database connection
     conn = sqlite3.connect(database)
