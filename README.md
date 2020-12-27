@@ -16,11 +16,7 @@ Finally install the dependencies:
 (env)$ pip install -r requirements.txt
 ```
 # Usage
-Generate a haiku using random quotes from WikiQuote:
-```bash
-$ python quotes.py
-```
-Store the quotes in a SQLite database and classify them based on sentiment:
+Generate a new haiku using random quotes from WikiQuote:
 ```bash
 $ python database.py
 ```
