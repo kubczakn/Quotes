@@ -16,11 +16,13 @@ Install dependencies:
 (quotes-env)$ pip install -r requirements.txt
 ```
 # Usage
-Generate a new haiku using random quotes from WikiQuote:
+Populate the Django database with a new Haiku categorized by sentiment:
 ```bash
 $ python database.py
 ```
-Run the Django application:
+Run the Django application at http://127.0.0.1:8000/haikuApp/:
 ```bash
+$ cd app
+$ python manage.py migrate
 $ python manage.py runserver
 ```
