@@ -13,7 +13,7 @@ $ source quotes-env/bin/activate
 ```
 Install dependencies:
 ```bash
-(env)$ pip install -r requirements.txt
+(quotes-env)$ pip install -r requirements.txt
 ```
 # Usage
 Generate a new haiku using random quotes from WikiQuote:
