@@ -6,12 +6,12 @@ Clone the repository:
 git clone https://github.com/kubczakn/Quotes.git
 cd Quotes
 ```
-Create virtual environment to install dependencies:
+Create and activate virtual environment:
 ```bash
-$ virtualenv2 --no-site-packages env
-$ source env/bin/activate
+$ python3 -m venv quotes-env
+$ source quotes-env/bin/activate
 ```
-Finally install the dependencies:
+Install dependencies:
 ```bash
 (env)$ pip install -r requirements.txt
 ```
