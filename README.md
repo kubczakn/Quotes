@@ -27,7 +27,7 @@ $ cd app
 $ python manage.py migrate
 $ python manage.py runserver
 ```
-Populate the Django database with a new Haiku categorized by sentiment:
+Populate the Django database with a new haiku categorized by sentiment:
 ```bash
 $ cd scripts
 $ python database.py
